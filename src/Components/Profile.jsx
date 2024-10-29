@@ -1,10 +1,12 @@
 import { UserContext } from './UserContext'
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
+import ArtworkCard from './ArtworkCard'
 
 const Profile = () => {
     const { loggedInUser, setLoggedInUser } = useContext(UserContext)
     const navigate = useNavigate()
+    const { exhibition } = useContext(UserContext)
 
     const handleClick = ()=> {
         setLoggedInUser(null)
@@ -15,6 +17,11 @@ const Profile = () => {
         <div>
             <h2>Welcome, {loggedInUser.username}!</h2>
             <button onClick={handleClick}>Logout</button>
+            {exhibition.map((artwork) => {
+            return (
+                    <ArtworkCard key={artwork.id} artwork={artwork}/>
+            )
+        })}
         </div>
     )
 }

@@ -4,16 +4,12 @@ const userInfo = axios.create({
     baseURL: 'https://exhibitly-be.onrender.com'
 })
 
-const artChicagoApi = axios.create({
-    baseURL: 'https://api.artic.edu/api/v1'
-})
-
-const imageChicagoApi  = axios.create({
-    baseURL: 'https://www.artic.edu/iiif/2'
-})
-
 const artHarvardApi = axios.create({
-    baseURL: 'https://api.harvardartmuseums.org'
+    baseURL: 'https://api.harvardartmuseums.org/object'
+})
+
+const artCleveApi = axios.create({
+    baseURL: 'https://openaccess-api.clevelandart.org/api/artworks/'
 })
 
 const apiKey = import.meta.env.VITE_HARVARD_API_KEY
@@ -25,8 +21,8 @@ export const fetchUsers = () => {
     })
 }
 
-export const postUser = () => {
-    return userInfo.post('api/users')
+export const postUser = (user) => {
+    return userInfo.post('api/users', user)
     .then((response) => {
         return response.data
     }).catch((error) => {
@@ -35,26 +31,26 @@ export const postUser = () => {
     })
 }
 
-export const fetchArtworks1 = () => {
-    return artChicagoApi.get('/artworks?limit=10')
+export const fetchArtworks1 = (searchTerm) => {
+    return artCleveApi.get(`?q=${searchTerm}`)
     .then((response) => {
         return response.data.data
     })
 }
 
-export const fetchArtworks2 = () => {
-    return artHarvardApi.get(`/object?apikey=${apiKey}&size=10`)
+export const fetchArtworksbyId = (id) => {
+    return artCleveApi.get(`${id}`)
     .then((response) => {
-        return response.data.records;
+        return response.data.data
     })
-    .catch((error) => {
-        console.error("Error fetching artworks:", error);
-    });
 }
 
-export const fetchArtImage = (id) => {
-    return imageChicagoApi.get(`/${id}/full/843,/0/default.jpg`)
+export const fetchArtworks2 = (searchTerm) => {
+    return artHarvardApi.get(`?apikey=${apiKey}&title=${searchTerm}`)
     .then((response) => {
-        return response
+        return response.data.records
+    })
+    .catch((error) => {
+        console.error("Error fetching artworks:", error)
     })
 }

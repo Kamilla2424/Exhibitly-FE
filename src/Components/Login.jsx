@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { fetchUsers, postUser } from '../../utils'
-import { useEffect, useState } from 'react'
+import { fetchUsers } from '../../utils'
+import { useState } from 'react'
 import { UserContext } from './UserContext'
 import { useContext } from 'react'
 
@@ -51,11 +51,11 @@ const Login = () => {
         <label className='login'>
                 Username:
             </label>
-                <input className="login" type="text" id="username" onChange={handleUsernameInput}></input>
+                <input className="login" type="text" id="username" onChange={handleUsernameInput} required></input>
                 <label className='login'>
                 Password:
             </label>
-                <input className="login" type="text" id="password" onChange={handlePasswordInput}></input>
+                <input className="login" type="password" id="password" onChange={handlePasswordInput} required></input>
         <button type="submit" onClick={handleSubmit}>Login</button>
         {!isValid && <p style={{ color: 'red' }}>Invalid username or password</p>}
         <a>Don't have an account?</a>
