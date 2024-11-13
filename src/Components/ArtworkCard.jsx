@@ -29,17 +29,18 @@ const ArtworkCard = ({thisArtwork}) => {
             <p>Loading artwork...</p>
         )
     }
-    console.log(artwork)
 
     if(artwork_id){
         return (
             <>
-            <div>
-            <img width={480} src={ artwork?.images?.web?.url || 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'}
+            <div className="artwork-card">
+            <img className="artwork-card-image" width={480} src={ artwork?.images?.web?.url || 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'}
             />
-            <h4>{artwork.title}</h4>
+            <div className="artwork-card-words">
+            <h4 className="artwork-card-title">{artwork.title}</h4>
             <h4>{artwork.creation_date}</h4>
-            <a>{artwork.description}</a>
+            <p>{artwork.description}</p>
+            </div>
             </div>
             </>
         )
@@ -47,13 +48,13 @@ const ArtworkCard = ({thisArtwork}) => {
 
     return (
         <>
-        <div className="artworklist-page-card">
-        <img width={480}
+        <div>
+        <h4 className="artwork-list-title" onClick={handleClick}>{artwork.title}</h4>
+        <img className="artwork-list-image"
           src={ artwork?.images?.web?.url || 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'}
         />
-        <h4 onClick={handleClick}>{artwork.title}</h4>
         </div>
-        <button onClick={() => addToCollection(artwork)}>+</button>
+        <button className="artwork-button" onClick={() => addToCollection(artwork)}>+</button>
         </>
     )
 }

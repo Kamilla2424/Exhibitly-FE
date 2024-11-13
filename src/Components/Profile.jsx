@@ -17,11 +17,12 @@ const Profile = () => {
         <div>
             <h2>Welcome, {loggedInUser.username}!</h2>
             <button onClick={handleClick}>Logout</button>
+            <h2>My Exhibition</h2>
             {exhibition.map((artwork) => {
             return (
                     <ArtworkCard key={artwork.id} artwork={artwork}/>
             )
-        })}
+            })}
         </div>
     )
 }

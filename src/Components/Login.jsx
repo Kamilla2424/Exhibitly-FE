@@ -10,6 +10,7 @@ const Login = () => {
     const [userPassword, setUserPassword] = useState("")
     const [usernameInput, setUsernameInput] = useState("")
     const [isValid, setIsValid] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const handleClick = () => {
         navigate('/signup')
@@ -24,6 +25,7 @@ const Login = () => {
     }
 
    const handleSubmit = (e) => {
+       setLoading(true)
        e.preventDefault()
        fetchUsers().then(({users}) => {
            const filteredUsers = users.filter(user => user.username === usernameInput)
@@ -50,15 +52,16 @@ const Login = () => {
         <div className="login-box">
         <label className='login'>
                 Username:
-            </label>
-                <input className="login" type="text" id="username" onChange={handleUsernameInput} required></input>
-                <label className='login'>
+        </label>
+            <input className="login-input" type="text" id="username" onChange={handleUsernameInput} required></input>
+        <label className='login'>
                 Password:
-            </label>
-                <input className="login" type="password" id="password" onChange={handlePasswordInput} required></input>
+        </label>
+            <input className="login-input" type="password" id="password" onChange={handlePasswordInput} required></input>
         <button type="submit" onClick={handleSubmit}>Login</button>
+        
         {!isValid && <p style={{ color: 'red' }}>Invalid username or password</p>}
-        <a>Don't have an account?</a>
+        <p>Don't have an account?</p>
         <button onClick={handleClick}>Sign Up</button>
         </div>
     )

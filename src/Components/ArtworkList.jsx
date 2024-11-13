@@ -1,37 +1,47 @@
-import { fetchArtworks1 } from "../../utils";
 import ArtworkCard from "./ArtworkCard"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const ArtworkList = ({allArtwork, onSearch}) => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [loading, setLoading] = useState(false)
 
     const handleInputChange = (e) => {
       setSearchTerm(e.target.value);
     };
   
     const handleSearch = () => {
+      setLoading(true)
       onSearch(searchTerm);
       setSearchTerm('');
     };
 
-    if(!allArtwork){
-        return <p>Loading...</p>
-    }
+    useEffect(() => {
+      if(allArtwork.length > 0){
+        setLoading(false)
+      }
+    }, [allArtwork])
 
     return (
         <>
         <input
+        className="search-input"
         type="text"
         placeholder="Search artworks..."
         value={searchTerm}
         onChange={handleInputChange}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="search-button" onClick={handleSearch}>Search</button>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+        <div className="artwork-list">
         {allArtwork.map((artwork) => {
-            return (
-                    <ArtworkCard key={artwork.id} thisArtwork={artwork}/>
+          return (
+            <ArtworkCard key={artwork.id} thisArtwork={artwork}/>
             )
         })}
+        </div>
+        )}
         </>
     )
 }

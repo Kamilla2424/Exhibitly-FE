@@ -1,55 +1,137 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 
-#root {
-  max-width: 1280px;
-}
+:root {
+    color: rgb(0, 0, 0);
+    background-color: #FBEAEB;
+    font-family: "Source Code Pro", sans-serif;
+  }
 
-.header {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center; 
-  padding: 10px;
-  background-color: #fde3c0;
-  margin-top: -10px;
-  margin-left: -10px;
-  margin-right: -10px;
-}
+  @font-face {
+    font-family: "EnchantedTales";
+    src: local("EnchantedTales"),
+      url("./fonts/EnchantedTales-FreeDemo.otf") format("opentype");
+    font-weight: normal;
+  }
 
-.header-title {
-  font-family: 'Playfair Display';
-  font-size: 25px;
-  margin-left: 20px;
-}
+  #root {
+    max-width: 1280px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .header-title {
+    font-family: 'EnchantedTales';
+    font-size: 50px;
+  }
+  
+  .header-link , header-profile {
+    font-family: "Source Code Pro", sans-serif;  
+  }
 
-.header-link {
-  font-weight: 700;
-  padding: 10px;
-}
+  a:hover {
+    color: #7f7f7f;
+  }
+  
+  a {
+    font-weight: 500;
+    color: #000000;
+    text-decoration: inherit;
+  }
 
-.header-title {
-  font-weight: 700;
-  font-size: 24px;
-  margin: 0;
-}
+  .search-input {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    height: 50px;
+    border: none;
+    background-color: #FBEAEB;
+    outline: none;
+    font-size: 30px;
+    
+  }
 
-.navbar {
-  display: flex;
-  gap: 15px;
-}
+  .search-button {
+    
+  }
 
-.nav-link {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 5px 10px;
-  transition: background 0.3s;
-}
+  .artwork-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  }
 
-.nav-link:hover,
-.nav-link.active {
-  background-color: hsl(0, 0%, 33%);
-  border-radius: 5px;
-}
+  .artwork-list-image {
+    width: 320px;
+    height: 480px;
+  }
+
+  .artwork-button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .artwork-list-title {
+    width: 300px;
+    
+  }
+
+  .artwork-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .artwork-card-image {
+    width: 480px;
+  }
+
+  .artwork-card-words {
+    
+    
+  }
+
+  .home-text {
+    display: flex;
+    justify-content: right;
+    font-family: 'EnchantedTales';
+    font-size: 60px;
+    background-color: #f9d9db;
+    margin: -10px;
+    padding: 10px;
+  }
+
+  .login-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .login-input {
+    margin: 10px;
+    height: 20px;
+  }
+
+  button {
+    border: none;
+    background-color: #f9d9db;
+    padding-block: 5px;
+    padding-inline: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: "Source Code Pro", sans-serif; 
+  }
+
+  button:hover {
+    background-color: #ecb5b9;
+  }

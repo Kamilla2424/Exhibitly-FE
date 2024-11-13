@@ -1,22 +1,24 @@
 import { UserContext } from './UserContext'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
-    const navigate = useNavigate()
+    const { exhibition } = useContext(UserContext)
     const { loggedInUser } = useContext(UserContext)
-
 
 return (
     <>
     <div className='header'>
-    <Link to='/' className="header-title">Exhibitly</Link>
     <div className="header-links">
-    <Link to='/artworks' className='header-link'>Art</Link>
+    <Link to='/artworks' className='header-link'>Search</Link>
     </div>
+    <Link to='/' className="header-title">Exhibitly</Link>
     {loggedInUser ? (
-        <button onClick={() => navigate('/profile')}>Profile</button>
+        <div className='header-profile'>
+        <Link to="/profile" >Profile</Link>
+        <a>|</a>
+        <a>🖼️ {exhibition.length}</a>
+        </div>
         ) : (
         <Link to="/login" className='header-link'>Login</Link>
         )}
