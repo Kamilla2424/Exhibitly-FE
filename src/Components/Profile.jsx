@@ -14,15 +14,21 @@ const Profile = () => {
     }
 
     return (
-        <div>
+        <div className='profile'>
             <h2>Welcome, {loggedInUser.username}!</h2>
-            <button onClick={handleClick}>Logout</button>
             <h2>My Exhibition</h2>
             {exhibition.map((artwork) => {
-            return (
-                    <ArtworkCard key={artwork.id} artwork={artwork}/>
-            )
-            })}
+                return (
+                <>
+                <div className="artwork-profile-card">
+                <h4 className="artwork-profile-title">{artwork.title}</h4>
+                <img className="artwork-profile-image" width={480} src={ artwork?.images?.web?.url || 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'}
+                />
+                </div>
+                </>
+                    )
+                })}
+            <button onClick={handleClick}>Logout</button>
         </div>
     )
 }

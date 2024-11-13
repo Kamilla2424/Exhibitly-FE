@@ -44,7 +44,9 @@ const Login = () => {
             console.error("Error fetching users:", error)
             setIsValid(false)
         })
-        
+        .finally(() => {
+            setLoading(false)
+        })
    }
 
 
@@ -58,7 +60,9 @@ const Login = () => {
                 Password:
         </label>
             <input className="login-input" type="password" id="password" onChange={handlePasswordInput} required></input>
-        <button type="submit" onClick={handleSubmit}>Login</button>
+        <button type="submit" onClick={handleSubmit} disabled={loading}>
+            {loading ? 'Loading...' : 'Login'}
+        </button>
         
         {!isValid && <p style={{ color: 'red' }}>Invalid username or password</p>}
         <p>Don't have an account?</p>
