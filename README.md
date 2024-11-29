@@ -98,3 +98,8 @@ Additionally, the backend exposes the following endpoints:
 | `GET /api/users`     | Fetch all users                   |
 | `POST /api/users`    | Register a new user               |
 
+
+## Deployment
+
+- **Frontend**: [https://exhibitly-fe.onrender.com](https://exhibitly-fe.onrender.com)
+- **Backend**: [https://exhibitly-be.onrender.com](https://exhibitly-be.onrender.com)
