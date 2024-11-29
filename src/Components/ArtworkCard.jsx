@@ -4,7 +4,7 @@ import { UserContext } from './UserContext'
 import { useNavigate } from "react-router-dom"
 import { fetchArtworksbyId } from "../../utils"
 
-const ArtworkCard = ({thisArtwork}) => {
+const ArtworkCard = ({thisArtwork, handleShow}) => {
     const [artwork, setArtwork] = useState(thisArtwork || null)
     const { artwork_id } = useParams()
     const { loggedInUser, addToCollection } = useContext(UserContext)
@@ -15,12 +15,16 @@ const ArtworkCard = ({thisArtwork}) => {
         naviagte(`${artwork.id}`)
     }
 
+    const handleBackClick = () => {
+        naviagte(`/artworks`)
+    }
+
     const handleAddToCollection = () => {
         if(loggedInUser){
             addToCollection(artwork)
             setAdded(true)
         }else{
-            alert("Please log in or sign up to add items to your collection.")
+            handleShow()
         }
     }
 
@@ -43,6 +47,7 @@ const ArtworkCard = ({thisArtwork}) => {
     if(artwork_id){
         return (
             <>
+            <button className="back-button" onClick={handleBackClick}>←</button>
             <div className="artwork-card">
             <img className="artwork-card-image" width={480} src={ artwork?.images?.web?.url || 'https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg'}
             />
@@ -50,6 +55,10 @@ const ArtworkCard = ({thisArtwork}) => {
             <h4 className="artwork-card-title">{artwork.title}</h4>
             <h4>{artwork.creation_date}</h4>
             <p>{artwork.description}</p>
+            <button className="artwork-card-button" onClick={handleAddToCollection}>Add to Exhibition</button>
+            {added && <p>Added to Exhibition</p>}
+            <p>Find out more info:</p>
+            <a href={artwork.url}>{artwork.url}</a>
             </div>
             </div>
             </>
