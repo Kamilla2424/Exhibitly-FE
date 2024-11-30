@@ -44,12 +44,12 @@ Set the backend up from this repo: [Exhibitly Backend](https://github.com/Kamill
 
 1. Clone the frontend repository to your local machine:
     ```bash
-    git clone https://github.com/your-username/exhibitly-frontend.git
+    git clone https://github.com/Kamilla2424/Exhibitly-FE
     ```
 
 2. Navigate into the project directory:
     ```bash
-    cd exhibitly-frontend
+    cd Exhibitly-FE
     ```
 
 3. Install dependencies:
@@ -81,7 +81,7 @@ Use the **Search Bar** to look up artworks by title or category. As you type in 
 Click on any artwork title to view more details. This will take you to a page showing the artwork's description, image, and creation date. You can also see more information via a link to the external art collection page.
 
 ### Add Artworks to Your Collection
-If you're logged in, you can add artworks to your personal collection (exhibition). Simply click the "**Add to Exhibition**" button next to an artwork's details or on the artwork list page.
+If you're logged in, you can add artworks to your personal collection (exhibition). Simply click the "**Add to Exhibition**" button next to an artwork's details or "**+**" on the artwork list page.
 
 ---
 
@@ -97,9 +97,3 @@ Additionally, the backend exposes the following endpoints:
 |----------------------|-----------------------------------|
 | `GET /api/users`     | Fetch all users                   |
 | `POST /api/users`    | Register a new user               |
-
-
-## Deployment
-
-- **Frontend**: [https://exhibitly-fe.onrender.com](https://exhibitly-fe.onrender.com)
-- **Backend**: [https://exhibitly-be.onrender.com](https://exhibitly-be.onrender.com)
