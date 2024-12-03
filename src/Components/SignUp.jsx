@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { fetchUsers, postUser } from "../../utils"
+import { postUser } from "../../utils"
 import { useContext } from 'react'
 import { UserContext } from './UserContext'
 
@@ -26,36 +26,24 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-       fetchUsers().then(({users}) => {
-           const filteredUsers = users.some(user => user.username === usernameInput)
-           const filteredEmails = users.some(user => user.email_address === emailInput)
-           if(filteredUsers || filteredEmails){
-                setIsValid(false)
-           }else{
-            postUser({ username: usernameInput, password: userPassword, email_address: emailInput}).then(newUser => {
-                setLoggedInUser(newUser)
-                navigate('/profile')
-            }).catch(error => {
-                console.error("error", error)
-            })
-           }
-       })}
+       
+       }
     
     return (
-        <div className="signup-box">
-            <form onSubmit={handleSubmit}>
-            <label className='signup'>
+        <div>
+            <form className="signup-box" onSubmit={handleSubmit}>
+            <label>
                 Username:
             </label>
-                <input onChange={handleUsernameInput} className="signup" type="text" id="username" required></input>
-                <label className='signup'>
-            <label className="signup">
+                <input onChange={handleUsernameInput} className="signup-input" type="text" id="username" required></input>
+            <label>
             Email Address:
             </label>
-                <input onChange={handleEmailInput} className="signup" type="email" id="email" required></input>
+                <input onChange={handleEmailInput} className="signup-input" type="email" id="email" required></input>
+            <label>
                 Password:
             </label>
-                <input onChange={handlePasswordInput} className="signup" type="password" id="password" required></input>
+                <input onChange={handlePasswordInput} className="signup-input" type="password" id="password" required></input>
                 {!isValid && <p style={{ color: 'red' }}>That username or email is already taken - pick a new one</p>}
             <button type="submit">Sign Up</button>
             </form>

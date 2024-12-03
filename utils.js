@@ -14,15 +14,23 @@ const artCleveApi = axios.create({
 
 const apiKey = import.meta.env.VITE_HARVARD_API_KEY
 
-export const fetchUsers = () => {
-    return userInfo.get(`api/users`)
+export const loginUser = (user) => {
+    return userInfo.post(`api/login`, user)
     .then((response) => {
         return response.data
+    }).catch((err) => {
+        if(err.response && err.response.data && err.response.data.msg){
+            console.error(err.response.data.msg)
+            throw err.response.data.msg
+        }else{
+            console.error(err.message)
+            throw {msg: err.message}
+        }
     })
 }
 
 export const postUser = (user) => {
-    return userInfo.post('api/users', user)
+    return userInfo.post('api/user', user)
     .then((response) => {
         return response.data
     }).catch((error) => {

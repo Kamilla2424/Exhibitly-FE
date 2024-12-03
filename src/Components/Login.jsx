@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { fetchUsers } from '../../utils'
+import { loginUser } from '../../utils'
 import { useState } from 'react'
 import { UserContext } from './UserContext'
 import { useContext } from 'react'
@@ -11,6 +11,7 @@ const Login = () => {
     const [usernameInput, setUsernameInput] = useState("")
     const [isValid, setIsValid] = useState(true)
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
 
     const handleClick = () => {
         navigate('/signup')
@@ -27,26 +28,23 @@ const Login = () => {
    const handleSubmit = (e) => {
        setLoading(true)
        e.preventDefault()
-       fetchUsers().then(({users}) => {
-           const filteredUsers = users.filter(user => user.username === usernameInput)
-            if(filteredUsers.length === 0){
-                setIsValid(false)
-                return
-            }
-            if(filteredUsers[0].password === userPassword){
-                setIsValid(true)
-                setLoggedInUser(filteredUsers[0])
-                navigate("/")
-            }else{
-                setIsValid(false)
-            }
-        }).catch((error) => {
-            console.error("Error fetching users:", error)
+       setError("")
+       if(!usernameInput || !userPassword){
+        setError("Username and password are required")
+        setLoading(false)
+        return
+       }
+       loginUser({username: usernameInput, password: userPassword})
+       .then(({user}) => {
+            setLoggedInUser(user)
+            navigate('/')
+       }).catch((err) => {
             setIsValid(false)
-        })
-        .finally(() => {
+            setError(err)
+       }).finally(() => {
             setLoading(false)
-        })
+       })
+        
    }
 
 
@@ -64,7 +62,7 @@ const Login = () => {
             {loading ? 'Loading...' : 'Login'}
         </button>
         
-        {!isValid && <p style={{ color: 'red' }}>Invalid username or password</p>}
+        {!isValid && <p style={{ color: 'red' }}>{error}</p>}
         <p>Don't have an account?</p>
         <button onClick={handleClick}>Sign Up</button>
         </div>
